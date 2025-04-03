@@ -1,0 +1,88 @@
+{% extends 'Main/base.html' %}
+
+{% block title %}
+    Registrar
+{% endblock title %}
+
+{% block content %}
+<style>
+    body {
+        background: linear-gradient(135deg, #1f1c2c, #494949);
+        color: white;
+    }
+
+    .card-custom {
+        background: rgba(0, 0, 0, 0.8);
+        border-radius: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+        color: white;
+    }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        color: white;
+        border-radius: 10px;
+    }
+
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.2);
+        border-color: #ff8c00;
+        box-shadow: 0 0 8px #ff8c00;
+    }
+
+    .btn-custom {
+        background: linear-gradient(90deg, #ff8c00, #ff3d00);
+        border: none;
+        color: white;
+        font-weight: bold;
+        padding: 10px;
+        border-radius: 10px;
+        transition: 0.3s ease-in-out;
+    }
+
+    .btn-custom:hover {
+        transform: scale(1.05);
+        background: linear-gradient(90deg, #ff3d00, #ff8c00);
+    }
+
+    .link-custom {
+        color: #ffcc70;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .link-custom:hover {
+        color: #ff8c00;
+        text-decoration: underline;
+    }
+
+    .alert-danger {
+        background: rgba(255, 0, 0, 0.2);
+        border-color: rgba(255, 0, 0, 0.5);
+        color: white;
+    }
+</style>
+
+<div class="container d-flex justify-content-center align-items-center" style="height: 84vh;">
+    <div class="col-md-6 col-lg-4">
+        <div class="card card-custom p-4">
+            <div class="card-header text-center">
+                <h4>🆕 Crear nuevo usuario</h4>
+            </div>
+            <div class="card-body">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Registrar</button>
+                </form>
+            </div>
+            <div class="card-footer text-center">
+                <a href="#" class="link-custom">¿Ya tienes una cuenta? Inicia sesión</a>
+                <br>
+                <a href="{{ request.META.HTTP_REFERER | default:'/' }}" class="link-custom">🔙 Volver</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
